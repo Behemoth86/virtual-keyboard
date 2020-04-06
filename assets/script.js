@@ -2,12 +2,12 @@ const FButtons = ['Esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', '
 const FButtonCodes =['Escape','F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'ScrollLock', 'Pause'];
 
 const ArrEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', '/', '*', '-',
-               'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\/', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
+               'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
                'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',  '←', '', '→',
                'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', '↑', 'End', '↓', 'PageDown', 'Enter',
                'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
 const ArrRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', '/', '*', '-',
-               'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\/', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
+               'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
                'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',  '←', '', '→',
                'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Shift', '↑', 'End', '↓', 'PageDown', 'Enter',
                'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
@@ -20,15 +20,19 @@ const specialKeys = ['Esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9'
                      'F12', 'ScrL', 'P/B', 'Tab', 'Backspace', 'CapsLock', 'Enter', 'Shift',
                      '↑', 'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', '←', '↓', '→',
                      'Backspace', 'Insert', 'Home', 'PageUp', 'Delete', 'End', 'PageDown', 'NumLock'];
-const letterRu = ['ё', '-', '=', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\/',
+const letterRu = ['ё', '-', '=', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\',
                   'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э',
                   'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', '/', ];
-const letterEn = ['`', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\/',
-                  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"',
+const letterEn = ['`', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\',
+                  'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'",
                   'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '|'];
-const numpads =['Numpad0', 'NumpadDecimal', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9'];
+const numpads =['Numpad0', 'NumpadDecimal', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9','NumpadDivide', 'NumpadMultiply', 'NumpadSubtract', 'NumpadAdd'];
 const numpadunactive = ['0', '.', '1', '2', '3', '4', '5', '6', '7', '8', '9'] ;
 const numpadactive = ['Insert', 'Delete', 'End', '↓', 'PageDown', '←', '', '→', 'Home', '↑', 'PageUp'];
+const shiftEnactive =   ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', ':', '"', '|', '<', '>', '?'];
+const shiftEnunactive = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', "'", '\\', ',', '.', '/'];
+const shiftRuactive = ['!','"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', '/', ','];
+const shiftRuunactive =['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\\', '.'];
 
 let lang = localStorage.getItem('lang') || 'en';
 
@@ -163,6 +167,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	let flagctrl=0;
 	let flagshift=0;
 	let flagalt=0;
+	let flagcaps=0;
+	let score =0;
   const numslocks = document.querySelectorAll('div');
   numslocks.forEach((e) => {
     if (numpads.includes(e.id)){
@@ -171,40 +177,73 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   keyboard.addEventListener('click', (event) => {
     if (event.target.classList.contains('letter')||event.target.classList.contains('digit')){
-      letterdigitclick()
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
+			letterdigitclick();
     }
     if (event.target.id==="CapsLock"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       capsclick();
     }
     if (event.target.id==="NumLock"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       numclick();
     }
     if ((event.target.id==="Delete")||(event.target.classList.contains('Delete'))){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       deleteclick();
     }
     if (event.target.id==="Backspace"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       backspaceclick();
     }
     if ((event.target.id==="Enter")||(event.target.id==="NumpadEnter")){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       enterclick();
     }
     if (event.target.id==="Tab"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       tabspaceclick("Tab");
     }
     if (event.target.id==="Space"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       tabspaceclick("Space");
     }
     if (event.target.id==="Escape"){
+			if ((tea.value.length===0)&&(score===0)){
+				getlocks();
+			}
       escclick();
 		}
 		if ((event.target.id==="ControlLeft")||(event.target.id==="ControlRight")){
 			if (event.target.id==="ControlLeft"){
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
+				}
 				ctrlclick("ControlLeft");
 				if (document.getElementById('ControlRight').classList.contains('key_active')){
 					document.getElementById('ControlRight').classList.remove('key_active');
 				}
 			}
 			else {
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
+				}
 				ctrlclick("ControlRight");
 				if (document.getElementById('ControlLeft').classList.contains('key_active')){
 					document.getElementById('ControlLeft').classList.remove('key_active');
@@ -213,12 +252,18 @@ window.addEventListener('DOMContentLoaded', () => {
 		}	
 		if ((event.target.id==="AltLeft")||(event.target.id==="AltRight")){
 			if (event.target.id==="AltLeft"){
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
+				}
 				altclick("AltLeft");
 				if (document.getElementById('AltRight').classList.contains('key_active')){
 					document.getElementById('AltRight').classList.remove('key_active');
 				}
 			}
 			else {
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
+				}
 				altclick("AltRight");
 				if (document.getElementById('AltLeft').classList.contains('key_active')){
 					document.getElementById('AltLeft').classList.remove('key_active');
@@ -227,15 +272,25 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		if ((event.target.id==="ShiftLeft")||(event.target.id==="ShiftRight")){
 			if (event.target.id==="ShiftLeft"){
-				shiftclick("ShiftLeft");
-				if (document.getElementById('ShiftRight').classList.contains('key_active')){
-					document.getElementById('ShiftRight').classList.remove('key_active');
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
 				}
+				if (flagcaps===0){
+					shiftclick("ShiftLeft");
+					if (document.getElementById('ShiftRight').classList.contains('key_active')){
+						document.getElementById('ShiftRight').classList.remove('key_active');
+					}
+				}	
 			}
 			else {
-				shiftclick("ShiftRight");
-				if (document.getElementById('ShiftLeft').classList.contains('key_active')){
-					document.getElementById('ShiftLeft').classList.remove('key_active');
+				if ((tea.value.length===0)&&(score===0)){
+					getlocks();
+				}
+				if (flagcaps===0){
+					shiftclick("ShiftRight");
+					if (document.getElementById('ShiftLeft').classList.contains('key_active')){
+						document.getElementById('ShiftLeft').classList.remove('key_active');
+					}
 				}
 			}	
 		}
@@ -251,11 +306,7 @@ window.addEventListener('DOMContentLoaded', () => {
       let symbol=event.target.innerHTML;
       if (pos===0){
         if (len===0){
-          var res = checklock(event,"CapsLock");
-          var res2 = checklock(event,"NumLock");
-          var res3 = checklock(event,"ScrollLock");
-          if (res){capsclick(); symbol=event.target.innerHTML;}
-          if (res2){numclick();}
+          symbol=event.target.innerHTML;
           tea.value = symbol;
           posit = pos+1;
         }
@@ -282,7 +333,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if (e.classList.contains('letter')){
           e.innerHTML = e.innerHTML.toUpperCase();
         }
-      });
+			});
+			flagcaps=1;
     }
     else{
       document.getElementById("CapsLock").classList.remove('key_active');
@@ -291,7 +343,8 @@ window.addEventListener('DOMContentLoaded', () => {
         if (e.classList.contains('letter')){
           e.innerHTML = e.innerHTML.toLowerCase();
         }
-      });  
+			});  
+			flagcaps=0;
     }
   }
   //функция для нажатия NumLock
@@ -304,9 +357,11 @@ window.addEventListener('DOMContentLoaded', () => {
       nums.forEach((e) => {
         if (e.classList.contains('numpads')){
 					e.classList.remove('specials')
-          n = numpadactive.indexOf(e.innerText);
-					e.innerText = numpadunactive[n];
-					e.classList.add('digit');
+					n = numpadactive.indexOf(e.innerText);
+					if (n!==-1){
+						e.innerText = numpadunactive[n];
+						e.classList.add('digit');
+					}
         }
       });
     }
@@ -315,9 +370,11 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById("NumLockP").classList.remove('radiobutton_active');
       nums.forEach((e) => {
         if (e.classList.contains('numpads')){
-          n = numpadunactive.indexOf(e.innerText);
-					e.innerText = numpadactive[n];
-					e.classList.remove('digit'); 
+					n = numpadunactive.indexOf(e.innerText);
+					if (n!==-1){
+						e.innerText = numpadactive[n];
+						e.classList.remove('digit'); 
+					}
 					if (specialKeys.includes(e.innerText)){
 						e.classList.add('specials');
 					} 
@@ -325,7 +382,11 @@ window.addEventListener('DOMContentLoaded', () => {
       });  
     }
   }
-
+	//функция нажатия scrolllock
+	function scrollclick(){
+		document.getElementById("ScrollLock").classList.toggle('key_active');
+		document.getElementById("ScrollLockP").classList.toggle('radiobutton_active');		
+	}
   //функция для нажатия delete
   function deleteclick() {
     let pos = getCaretPos();
@@ -426,15 +487,59 @@ window.addEventListener('DOMContentLoaded', () => {
 			flagalt=0;
 		}
 		else {
-			document.getElementById(control).classList.add('key_active');
-			flagalt=1;
+			if (flagshift===1){
+				document.getElementById('AltLeft').classList.remove('key_active');
+				document.getElementById('AltRight').classList.remove('key_active');
+				letters.forEach((e) => {
+					if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
+						if (lang==='en'){
+							n = shiftEnactive.indexOf(e.innerText);
+							if (n!==-1){
+								e.innerText = shiftEnunactive[n];
+							}	
+						}
+						else if (lang==='ru'){
+							n = shiftRuactive.indexOf(e.innerText);
+							if (n!==-1){
+								e.innerText = shiftRuunactive[n];
+							}	
+						}
+					}
+				});
+				document.getElementById('ShiftLeft').classList.remove('key_active');
+				document.getElementById('ShiftRight').classList.remove('key_active');
+				changelanguage();
+				flagalt=0;
+				flagshift=0;
+			}
+			else{
+			  document.getElementById(control).classList.add('key_active');
+			  flagalt=1;
+			}
 		}	
 	}
 	//функция нажатия Shift
 	function shiftclick(control){
 		if (document.getElementById(control).classList.contains('key_active')){
 			document.getElementById(control).classList.remove('key_active');
+			letters.forEach((e) => {
+				if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
+					if (lang==='en'){
+						n = shiftEnactive.indexOf(e.innerText);
+						if (n!==-1){
+							e.innerText = shiftEnunactive[n];
+						}
+					}
+					else if (lang==='ru'){
+						n = shiftRuactive.indexOf(e.innerText);
+						if (n!==-1){
+						  e.innerText = shiftRuunactive[n];
+					  }
+					}
+				}
+			});
 			flagshift=0;
+
 		}
 		else {
 			if (flagalt===1){
@@ -446,6 +551,23 @@ window.addEventListener('DOMContentLoaded', () => {
 			}
 			else{
 			document.getElementById(control).classList.add('key_active');
+			letters.forEach((e) => {
+				if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
+					if (lang==='en'){
+						n = shiftEnunactive.indexOf(e.innerText);
+						if (n!==-1){
+
+							e.innerText = shiftEnactive[n];
+						}	
+					}
+					else if (lang==='ru'){
+						n = shiftRuunactive.indexOf(e.innerText);
+						if (n!==-1){
+							e.innerText = shiftRuactive[n];
+						}	
+					}
+				}
+			});
 			flagshift=1;
 			}
 		}	
@@ -456,13 +578,20 @@ window.addEventListener('DOMContentLoaded', () => {
 		letters.forEach((e) => {
 			if (e.classList.contains('letter')){
 				if (lang==='en'){
-					n = letterEn.indexOf(e.innerText);
-					e.innerText = letterRu[n];
+					n = letterEn.indexOf(e.innerText.toLowerCase());
+					if (flagcaps==1) {
+						e.innerText = letterRu[n].toUpperCase();
+					}
+					else	e.innerText = letterRu[n];
 
 				}
 				else if (lang==='ru'){
-					n = letterRu.indexOf(e.innerText);
-					e.innerText = letterEn[n];
+					n = letterRu.indexOf(e.innerText.toLowerCase());
+					if (flagcaps==1) {
+						e.innerText = letterEn[n].toUpperCase();
+					}
+					else e.innerText = letterEn[n];
+
 				}
 			}
 		});
@@ -472,7 +601,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		else if (lang==='ru'){
 			lang = 'en';
 		}
-		localStorage.setItem(lang,'lang');
+		localStorage.setItem('lang',lang);
 		version = 'Активная расладка ' + lang;
 		version = version + '\n Создано Behemoth86 for Windows OS';
 		version = version + '\n Для переключения раскладки используйте Alt + Shift';
@@ -483,7 +612,17 @@ window.addEventListener('DOMContentLoaded', () => {
   function checklock(event, lock){
     var z = event.getModifierState(lock);
     return z;
-  }
+	}
+	//Вспомогательная функция срабатывания локов если любая кнопка нажимается первой
+	function getlocks(){
+		var res = checklock(event,"CapsLock");
+		var res2 = checklock(event,"NumLock");
+		var res3 = checklock(event,"ScrollLock");
+		if (res) {capsclick();}
+		if (res2) {numclick();}
+		if (res3) {scrollclick();}
+		score = 1;
+	}
   //Вспомогательная функция поиска позиции в textarea
   function getCaretPos() {
     if (document.selection) { 
