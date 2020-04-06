@@ -2,15 +2,15 @@ const FButtons = ['Esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', '
 const FButtonCodes =['Escape','F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'ScrollLock', 'Pause'];
 
 const ArrEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', '/', '*', '-',
-               'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\/', 'Delete', 'End', 'PageDown', '7', '8', '9', '+',
-               'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter', '4', '5', '6',
-               'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', '&uarr;', '1', '2', '3', 'Enter',
-               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '&larr;', '&darr;', '&rarr;', '0', '.'];
+               'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\/', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
+               'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',  '←', '', '→',
+               'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', '&uarr;', 'End', '↓', 'PageDown', 'Enter',
+               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '&larr;', '&darr;', '&rarr;', 'Insert', 'Delete',];
 const ArrRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', '/', '*', '-',
-               'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\/', 'Delete', 'End', 'PageDown', '7', '8', '9', '+',
-               'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter', '4', '5', '6',
-               'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Shift', '&uarr;', '1', '2', '3', 'Enter',
-               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '&larr;', '&darr;', '&rarr;', '0', '.'];
+               'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\/', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
+               'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',  '←', '', '→',
+               'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Shift', '&uarr;', 'End', '↓', 'PageDown', 'Enter',
+               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '&larr;', '&darr;', '&rarr;', 'Insert', 'Delete',];
 const keyCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', 'NumpadDivide', 'NumpadMultiply', 'NumpadSubtract',
                   'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'End', 'PageDown', 'Numpad7', 'Numpad8', 'Numpad9', 'NumpadAdd',
                   'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'Numpad4', 'Numpad5', 'Numpad6',
@@ -27,8 +27,8 @@ const letterEn = ['`', '-', '=', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p
                   'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"',
                   'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '|'];
 const numpads =['Numpad0', 'NumpadDecimal', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9'];
-const numpadunactive = ['0', '.', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const numpadactive = ['Insert', 'Delete', 'End', '&darr;', 'PageDown', '&larr;', '', '&rarr;', 'Home', '&uarr;', 'PageUp'];
+const numpadunactive = ['0', '.', '1', '2', '3', '4', '5', '6', '7', '8', '9'] ;
+const numpadactive = ['Insert', 'Delete', 'End', '↓', 'PageDown', '←', '', '→', 'Home', '↑', 'PageUp'];
 
 let lang = localStorage.getItem('lang') || 'en';
 
@@ -257,8 +257,9 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById("NumLockP").classList.add('radiobutton_active');
       nums.forEach((e) => {
         if (e.classList.contains('numpads')){
-          n = numpadunactive.indexOf(e.innerHTML);
-          e.innerHTML = numpadactive[n];
+          n = numpadactive.indexOf(e.innerText);
+					e.innerText = numpadunactive[n];
+					e.classList.add('digit');
         }
       });
     }
@@ -267,9 +268,9 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById("NumLockP").classList.remove('radiobutton_active');
       nums.forEach((e) => {
         if (e.classList.contains('numpads')){
-          alert(e.innerHTML);
-          n = numpadactive.indexOf(e.innerHTML);
-          e.innerHTML = numpadunactive[n];  
+          n = numpadunactive.indexOf(e.innerText);
+					e.innerText = numpadactive[n];
+					e.classList.remove('digit');  
         }
       });  
     }
