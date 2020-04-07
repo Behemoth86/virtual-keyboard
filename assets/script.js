@@ -72,7 +72,6 @@ function init(){
   const sirow = document.createElement('div');
   keyboarddiv.append(sirow);
   sirow.classList.add('row');
-
   //Добавление radiobutton
   const radiopanel = document.createElement('div');
   keyboarddiv.append(radiopanel);
@@ -175,106 +174,67 @@ window.addEventListener('DOMContentLoaded', () => {
       e.classList.add('numpads');
     }
   });
-  keyboard.addEventListener('click', (event) => {
-    if (event.target.classList.contains('letter')||event.target.classList.contains('digit')){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-			letterdigitclick();
+  document.addEventListener('keydown', (event) => {
+    if ((tea.value.length===0)&&(score===0)){
+      getlocks();
     }
-    if (event.target.id==="CapsLock"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      capsclick();
+    const key=document.getElementById(event.code);
+    if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")){
+    key.classList.add('key_active');}
+    posit= getCaretPos();
+    if (event.code==="CapsLock"){capsclick();}
+    if (event.code==="NumLock"){numclick();}
+    if ((event.code==="Delete")||(key.classList.contains('Delete'))){deleteclick();}
+    if (event.code==="Backspace"){backspaceclick();}
+    if ((event.code==="Enter")||(event.code==="NumpadEnter")){enterclick();}
+    if (event.code==="Tab"){tabspaceclick("Tab");}
+    if (event.code==="Space"){tabspaceclick("Space");}
+    if (event.code==="Escape"){escclick();}
+    if (event.code==="End"){endclick();}
+    if (event.code==="Home"){homeclick();}
+    if (event.code==="Insert"){insertclick();}
+    if ((event.code==="ArrowUp")||((key.classList.contains("specials")&&(key.classList.contains("↑"))))){
+      arrowupclick();
     }
-    if (event.target.id==="NumLock"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      numclick();
+    if ((event.code==="ArrowDown")||((key.classList.contains("specials")&&(key.classList.contains("↓"))))){
+      arrowdownclick();
     }
-    if ((event.target.id==="Delete")||(event.target.classList.contains('Delete'))){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      deleteclick();
+    if ((event.code==="ArrowLeft")||((key.classList.contains("specials")&&(key.classList.contains("←"))))){
+      arrowleftclick();
     }
-    if (event.target.id==="Backspace"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      backspaceclick();
-    }
-    if ((event.target.id==="Enter")||(event.target.id==="NumpadEnter")){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      enterclick();
-    }
-    if (event.target.id==="Tab"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      tabspaceclick("Tab");
-    }
-    if (event.target.id==="Space"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      tabspaceclick("Space");
-    }
-    if (event.target.id==="Escape"){
-			if ((tea.value.length===0)&&(score===0)){
-				getlocks();
-			}
-      escclick();
-		}
-		if ((event.target.id==="ControlLeft")||(event.target.id==="ControlRight")){
-			if (event.target.id==="ControlLeft"){
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
-				}
+    if ((event.code==="ArrowRight")||((key.classList.contains("specials")&&(key.classList.contains("→"))))){
+      arrowrightclick();
+    }   
+		if ((event.code==="ControlLeft")||(event.code==="ControlRight")){
+			if (event.code==="ControlLeft"){
 				ctrlclick("ControlLeft");
 				if (document.getElementById('ControlRight').classList.contains('key_active')){
 					document.getElementById('ControlRight').classList.remove('key_active');
 				}
 			}
 			else {
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
-				}
 				ctrlclick("ControlRight");
 				if (document.getElementById('ControlLeft').classList.contains('key_active')){
 					document.getElementById('ControlLeft').classList.remove('key_active');
 			  }	
 			}
 		}	
-		if ((event.target.id==="AltLeft")||(event.target.id==="AltRight")){
-			if (event.target.id==="AltLeft"){
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
-				}
+		if ((event.code==="AltLeft")||(event.code==="AltRight")){
+			if (event.code==="AltLeft"){
 				altclick("AltLeft");
 				if (document.getElementById('AltRight').classList.contains('key_active')){
 					document.getElementById('AltRight').classList.remove('key_active');
 				}
 			}
 			else {
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
-				}
 				altclick("AltRight");
 				if (document.getElementById('AltLeft').classList.contains('key_active')){
 					document.getElementById('AltLeft').classList.remove('key_active');
 				}
 			}	
 		}
-		if ((event.target.id==="ShiftLeft")||(event.target.id==="ShiftRight")){
-			if (event.target.id==="ShiftLeft"){
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
-				}
+		if ((event.code==="ShiftLeft")||(event.code==="ShiftRight")){
+			if (event.code==="ShiftLeft"){
 				if (flagcaps===0){
 					shiftclick("ShiftLeft");
 					if (document.getElementById('ShiftRight').classList.contains('key_active')){
@@ -283,9 +243,120 @@ window.addEventListener('DOMContentLoaded', () => {
 				}	
 			}
 			else {
-				if ((tea.value.length===0)&&(score===0)){
-					getlocks();
+				if (flagcaps===0){
+					shiftclick("ShiftRight");
+					if (document.getElementById('ShiftLeft').classList.contains('key_active')){
+						document.getElementById('ShiftLeft').classList.remove('key_active');
+					}
 				}
+			}	
+    }
+    
+
+  });
+
+
+
+  document.addEventListener('keyup', (event) => {
+    const key=document.getElementById(event.code);
+    if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")){
+      key.classList.remove('key_active');
+    }
+  });
+  
+  
+
+  keyboard.addEventListener('click', (event) => {
+    if ((tea.value.length===0)&&(score===0)){
+      getlocks();
+      score=1;
+    }
+    if (event.target.classList.contains('letter')||event.target.classList.contains('digit')){
+			letterdigitclick();
+    }
+    if (event.target.id==="CapsLock"){
+      capsclick();
+    }
+    if (event.target.id==="NumLock"){
+      numclick();
+    }
+    if ((event.target.id==="Delete")||(event.target.classList.contains('Delete'))){
+      deleteclick();
+    }
+    if (event.target.id==="Backspace"){
+      backspaceclick();
+    }
+    if ((event.target.id==="Enter")||(event.target.id==="NumpadEnter")){
+      enterclick();
+    }
+    if (event.target.id==="Tab"){
+      tabspaceclick("Tab");
+    }
+    if (event.target.id==="Space"){
+      tabspaceclick("Space");
+    }
+    if (event.target.id==="Escape"){
+      escclick();
+    }
+    if (event.target.id==="End"){
+      endclick();
+    }
+    if (event.target.id==="Home"){
+      homeclick();
+    }
+    if (event.target.id==="Insert"){
+      insertclick();
+    }
+    if ((event.target.id==="ArrowUp")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↑"))))){
+      arrowupclick();
+    }
+    if ((event.target.id==="ArrowDown")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↓"))))){
+      arrowdownclick();
+    }
+    if ((event.target.id==="ArrowLeft")||((event.target.classList.contains("specials")&&(event.target.classList.contains("←"))))){
+      arrowleftclick();
+    }
+    if ((event.target.id==="ArrowRight")||((event.target.classList.contains("specials")&&(event.target.classList.contains("→"))))){
+      arrowrightclick();
+    }   
+		if ((event.target.id==="ControlLeft")||(event.target.id==="ControlRight")){
+			if (event.target.id==="ControlLeft"){
+				ctrlclick("ControlLeft");
+				if (document.getElementById('ControlRight').classList.contains('key_active')){
+					document.getElementById('ControlRight').classList.remove('key_active');
+				}
+			}
+			else {
+				ctrlclick("ControlRight");
+				if (document.getElementById('ControlLeft').classList.contains('key_active')){
+					document.getElementById('ControlLeft').classList.remove('key_active');
+			  }	
+			}
+		}	
+		if ((event.target.id==="AltLeft")||(event.target.id==="AltRight")){
+			if (event.target.id==="AltLeft"){
+				altclick("AltLeft");
+				if (document.getElementById('AltRight').classList.contains('key_active')){
+					document.getElementById('AltRight').classList.remove('key_active');
+				}
+			}
+			else {
+				altclick("AltRight");
+				if (document.getElementById('AltLeft').classList.contains('key_active')){
+					document.getElementById('AltLeft').classList.remove('key_active');
+				}
+			}	
+		}
+		if ((event.target.id==="ShiftLeft")||(event.target.id==="ShiftRight")){
+			if (event.target.id==="ShiftLeft"){
+				if (flagcaps===0){
+					shiftclick("ShiftLeft");
+					if (document.getElementById('ShiftRight').classList.contains('key_active')){
+						document.getElementById('ShiftRight').classList.remove('key_active');
+					}
+				}	
+			}
+			else {
 				if (flagcaps===0){
 					shiftclick("ShiftRight");
 					if (document.getElementById('ShiftLeft').classList.contains('key_active')){
@@ -296,8 +367,41 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
   tea.focus(); 
 	tea.setSelectionRange(posit,posit);
-	});
-	
+  });
+  //функция для нажатия стрелки вверх
+  function arrowupclick(){
+    posit=getCaretPos();
+    if (posit-70<0){
+      posit=0;
+    }
+    else posit=posit-70;
+    var evt = new KeyboardEvent('keydown', {'keyCode':38, 'which':38});
+    document.dispatchEvent(evt);
+  }
+  //функция для нажатия стрелки вниз
+  function arrowdownclick(){
+    posit=getCaretPos();
+    if (posit+70>tea.value.length){
+      posit=tea.value.length;
+    }
+    else posit=posit+70;
+    var evt = new KeyboardEvent('keydown', {'keyCode':40, 'which':40});
+    document.dispatchEvent(evt);
+  }
+  //функция для нажатия стрелки влево
+  function arrowleftclick(){
+    posit=getCaretPos();
+    posit=posit-1;
+    var evt = new KeyboardEvent('keydown', {'keyCode':37, 'which':37});
+    document.dispatchEvent(evt);
+  }
+  //функция для нажатия стрелки вправо
+  function arrowrightclick(){
+    posit=getCaretPos();
+    posit=posit+1;
+    var evt = new KeyboardEvent('keydown', {'keyCode':39, 'which':39});
+    document.dispatchEvent(evt);
+  }
   //функция для нажатия буквы или цифры
   function letterdigitclick(){
     let pos = getCaretPos();
@@ -479,8 +583,20 @@ window.addEventListener('DOMContentLoaded', () => {
 			document.getElementById(control).classList.add('key_active');
 			flagctrl=1;
 		}	
-	}
-	//функция нажатия Alt
+  }
+  //функция нажатия End
+	function endclick(){
+    posit = tea.value.length;
+  }
+  //функция нажатия Home
+	function homeclick(){
+    posit = 0;
+  }
+  //функция нажатия Insert
+	function insertclick(){
+    
+  }
+  //функция нажатия Alt
 	function altclick(control){
 		if (document.getElementById(control).classList.contains('key_active')){
 			document.getElementById(control).classList.remove('key_active');
