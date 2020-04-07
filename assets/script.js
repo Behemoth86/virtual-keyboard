@@ -76,7 +76,7 @@ function init(){
   const radiopanel = document.createElement('div');
   keyboarddiv.append(radiopanel);
   radiopanel.classList.add('radiopanel');
-  //
+  //Дбавление в радиопанель индикаторов
   const radioNumLock = document.createElement('div');
   radiopanel.append(radioNumLock);
   radioNumLock.classList.add('radioNumLock', 'radiobutton');
@@ -104,6 +104,7 @@ function init(){
       frow.append(fbuttons);
     }
   }
+  //Добавление любой строки клавиатуры кроме первой
   function addrows(row,beginindex, endindex, lang){
     let ArrKey = [];
     let ArrLetter =[]; 
@@ -166,7 +167,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	let flagctrl=0;
 	let flagshift=0;
 	let flagalt=0;
-	let flagcaps=0;
+  let flagcaps=0;
+  let flagnum=0;
+  let flagscroll=0;
 	let score =0;
   const numslocks = document.querySelectorAll('div');
   numslocks.forEach((e) => {
@@ -174,6 +177,7 @@ window.addEventListener('DOMContentLoaded', () => {
       e.classList.add('numpads');
     }
   });
+  //События при нажатии кнопок на реальной клавиатуре
   document.addEventListener('keydown', (event) => {
     if ((tea.value.length===0)&&(score===0)){
       getlocks();
@@ -184,10 +188,49 @@ window.addEventListener('DOMContentLoaded', () => {
 			&&(event.code!=='F1')&&(event.code!=='F2')&&(event.code!=='F3')&&(event.code!=='F4')&&(event.code!=='F6')&&(event.code!=='F7')
 			&&(event.code!=='F8')&&(event.code!=='F9')&&(event.code!=='F10')&&(event.code!=='F11')&&(event.code!=='F12')){
     key.classList.add('key_active');}
-    posit= getCaretPos();
-		if (event.code==="CapsLock"){capsclick();}
-		else if (event.code==="ScrollLock"){scrollclick();}	
-    else if (event.code==="NumLock"){numclick();}	
+    posit = getCaretPos();
+		if (event.code==="CapsLock"){
+      event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+      if (tea.value.length===0){
+        if (score>1){
+          capsclick();
+        }
+        else {
+          score=score+1;
+        }
+      }  
+      else{
+        capsclick();
+      }  
+    }
+		else if (event.code==="ScrollLock"){
+      event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+      if (tea.value.length===0){
+        if (score>1){
+          scrollclick();
+        }
+        else {
+          score=score+1;
+        }
+      }  
+      else{
+        scrollclick();
+      }  
+    }
+    else if (event.code==="NumLock"){
+      event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+      if (tea.value.length===0){
+        if (score>1){
+          numclick();
+        }
+        else {
+          score=score+1;
+        }
+      }  
+      else{
+        numclick();
+      }  
+    }
     else if ((event.code==="Delete")||(key.classList.contains('Delete'))){deleteclick();}
     else if (event.code==="Backspace"){backspaceclick();}
     else if ((event.code==="Enter")||(event.code==="NumpadEnter")){enterclick();}
@@ -217,11 +260,18 @@ window.addEventListener('DOMContentLoaded', () => {
 		}	
 		else if (event.code==='ShiftLeft'){
 			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
-			shiftclick('ShiftLeft');
+      shiftclick('ShiftLeft');
+      if (document.getElementById('ShiftRight').classList.contains('key_active')){
+        document.getElementById('ShiftRight').classList.remove('key_active')
+      }
 		}
 		else if (event.code==='ShiftRight'){
 			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
-			shiftclick('ShiftRight');}
+      shiftclick('ShiftRight');
+      if (document.getElementById('ShiftLeft').classList.contains('key_active')){
+        document.getElementById('ShiftLeft').classList.remove('key_active')
+      }
+    }
 		else if ((event.code==='F1')||(event.code==='F2')||(event.code==='F3')||(event.code==='F4')||(event.code==='F6')||(event.code==='F7')||
 				(event.code==='F8')||(event.code==='F9')||(event.code==='F10')||(event.code==='F11')||(event.code==='F12')){
 				event.preventDefault ? event.preventDefault() : (event.returnValue=false);
@@ -236,7 +286,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		tea.focus(); 
 		tea.setSelectionRange(posit,posit);
 	});
-
+  //События при отпускании кнопок на реальной клавиатуре
   document.addEventListener('keyup', (event) => {
     const key=document.getElementById(event.code);
     if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")&&(event.code!=='ShiftLeft')
@@ -246,8 +296,7 @@ window.addEventListener('DOMContentLoaded', () => {
       key.classList.remove('key_active');
     }
   });
- 
-
+  //События при нажатии кнопок мышкой на виртуальной клавиатуре
   keyboard.addEventListener('click', (event) => {
     if ((tea.value.length===0)&&(score===0)){
       getlocks();
@@ -263,7 +312,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (event.target.id==="Space"){tabspaceclick("Space");}
     if (event.target.id==="Escape"){escclick();}
 		if ((event.target.id==="End")||(event.target.classList.contains('End'))){endclick();}
-		if (event.target.id==="ScrollLock"){scrollclick();}
+		if (event.target.id==="ScrollLock"){
+      if (flagscroll===0){
+        scrollclick();
+      }
+    }  
 		if ((event.target.id==="Home")||(event.target.classList.contains('Home'))){homeclick();}
 		if ((event.target.id==="PageUp")||(event.target.classList.contains('PageUp'))){pageupclick();}
 		if ((event.target.id==="PageDown")||(event.target.classList.contains('PageDown'))){pagedownclick();}
@@ -411,7 +464,12 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementById("CapsLockP").classList.remove('radiobutton_active');
       letters.forEach((e) => {
         if (e.classList.contains('letter')){
-          e.innerHTML = e.innerHTML.toLowerCase();
+          if (flagshift===0){
+            e.innerHTML = e.innerHTML.toLowerCase();
+          }
+          else if (flagshift===1){
+            e.innerHTML = e.innerHTML.toUpperCase();
+          }
         }
 			});  
 			flagcaps=0;
@@ -434,6 +492,7 @@ window.addEventListener('DOMContentLoaded', () => {
 					}
         }
       });
+      flagnum=1;
     }
     else{
       document.getElementById("NumLock").classList.remove('key_active');
@@ -449,13 +508,22 @@ window.addEventListener('DOMContentLoaded', () => {
 						e.classList.add('specials');
 					} 
         }
-      });  
+      });
+      flagnum=0;  
     }
   }
 	//функция нажатия scrolllock
 	function scrollclick(){
-		document.getElementById("ScrollLock").classList.toggle('key_active');
-		document.getElementById("ScrollLockP").classList.toggle('radiobutton_active');		
+    if (document.getElementById("ScrollLock").classList.contains('key_active')===false){
+      document.getElementById("ScrollLock").classList.add('key_active');
+      document.getElementById("ScrollLockP").classList.add('radiobutton_active');		
+      flagscroll=1;
+    }
+    else{
+		  document.getElementById("ScrollLock").classList.remove('key_active');
+      document.getElementById("ScrollLockP").classList.remove('radiobutton_active');		
+      flagscroll=0;
+    }
 	}
   //функция для нажатия delete
   function deleteclick() {
@@ -607,14 +675,24 @@ window.addEventListener('DOMContentLoaded', () => {
 			letters.forEach((e) => {
 				if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
 					if (lang==='en'){
-						e.innerHTML = e.innerHTML.toLowerCase();	
+            if (flagcaps===0){
+              e.innerHTML = e.innerHTML.toLowerCase();
+            }
+            else if (flagcaps===1){
+              e.innerHTML = e.innerHTML.toUpperCase();
+            } 	
 						n = shiftEnactive.indexOf(e.innerText);
 						if (n!==-1){
 							e.innerText = shiftEnunactive[n];
 						}
 					}
 					else if (lang==='ru'){
-						e.innerHTML = e.innerHTML.toLowerCase();
+						if (flagcaps===0){
+              e.innerHTML = e.innerHTML.toLowerCase();
+            }
+            else if (flagcaps===1){
+              e.innerHTML = e.innerHTML.toUpperCase();
+            }
 						n = shiftRuactive.indexOf(e.innerText);
 						if (n!==-1){
 						  e.innerText = shiftRuunactive[n];
@@ -633,19 +711,28 @@ window.addEventListener('DOMContentLoaded', () => {
 				flagshift=0;
 			}
 			else{
-				//if (flagcaps===1){capsclick();}
 				document.getElementById(control).classList.add('key_active');
 				letters.forEach((e) => {
 					if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
 						if (lang==='en'){
-							e.innerHTML = e.innerHTML.toUpperCase();
+              if (flagcaps===0){
+                e.innerHTML = e.innerHTML.toUpperCase();
+              }
+              else if (flagcaps===1){
+                e.innerHTML = e.innerHTML.toLowerCase();
+              }
 							n = shiftEnunactive.indexOf(e.innerText);
 							if (n!==-1){
 								e.innerText = shiftEnactive[n];
 							}	
 						}
 						else if (lang==='ru'){
-							e.innerHTML = e.innerHTML.toUpperCase();
+							if (flagcaps===0){
+                e.innerHTML = e.innerHTML.toUpperCase();
+              }
+              else if (flagcaps===1){
+                e.innerHTML = e.innerHTML.toLowerCase();
+              }
 							n = shiftRuunactive.indexOf(e.innerText);
 							if (n!==-1){
 								e.innerText = shiftRuactive[n];
@@ -657,7 +744,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			}
 		}	
 	}
-	//функция\ нажатия любой ф-ки кроме F5, она для обновления страницы
+	//функция нажатия любой ф-ки кроме F5, она для обновления страницы
 	function fclick(f){
 		f.classList.add('key_active');  
 		alert('Проект полнофункциональной клавиатуры! Отличия от реальных \n нажатий имеют функциональные кнопки, а также стрелки.\n Единственное отличие по кнопкам, это отсутствие PrntScr,\n т.к. не нашел пока по ней документацию.')
@@ -727,7 +814,6 @@ window.addEventListener('DOMContentLoaded', () => {
     else if (tea.selectionStart!==false) return tea.selectionStart;
     else return 0;
   }
-
 });
 
 
