@@ -5,20 +5,20 @@ const ArrEn = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 
                'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
                'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',  '←', '', '→',
                'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'Shift', '↑', 'End', '↓', 'PageDown', 'Enter',
-               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
+               'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
 const ArrRu = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', '/', '*', '-',
                'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\', 'Delete', 'End', 'PageDown', 'Home', '↑', 'PageUp', '+',
                'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э', 'Enter',  '←', '', '→',
                'Shift', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'Shift', '↑', 'End', '↓', 'PageDown', 'Enter',
-               'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
+               'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Ctrl', '←', '↓', '→', 'Insert', 'Delete',];
 const keyCodes = ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace', 'Insert', 'Home', 'PageUp', 'NumLock', 'NumpadDivide', 'NumpadMultiply', 'NumpadSubtract',
                   'Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete', 'End', 'PageDown', 'Numpad7', 'Numpad8', 'Numpad9', 'NumpadAdd',
                   'CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter', 'Numpad4', 'Numpad5', 'Numpad6',
                   'ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight', 'ArrowUp', 'Numpad1', 'Numpad2', 'Numpad3', 'NumpadEnter',
-                  'ControlLeft', 'WakeUp', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'Numpad0', 'NumpadDecimal'];
+                  'ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'Numpad0', 'NumpadDecimal'];
 const specialKeys = ['Esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11',
                      'F12', 'ScrL', 'P/B', 'Tab', 'Backspace', 'CapsLock', 'Enter', 'Shift',
-                     '↑', 'Ctrl', 'Fn', 'Alt', 'Space', 'Alt', '←', '↓', '→',
+                     '↑', 'Ctrl', 'Win', 'Alt', 'Space', 'Alt', '←', '↓', '→',
                      'Backspace', 'Insert', 'Home', 'PageUp', 'Delete', 'End', 'PageDown', 'NumLock'];
 const letterRu = ['ё', '-', '=', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', '\\',
                   'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э',
@@ -179,146 +179,99 @@ window.addEventListener('DOMContentLoaded', () => {
       getlocks();
     }
     const key=document.getElementById(event.code);
-    if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")){
+		if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")&&(event.code!=='ShiftLeft')
+			&&(event.code!=="ShiftRight")&&(event.code!=="ControlLeft")&&(event.code!=="ControlRight")&&(event.code!=="AltLeft")&&(event.code!=="AltRight")
+			&&(event.code!=='F1')&&(event.code!=='F2')&&(event.code!=='F3')&&(event.code!=='F4')&&(event.code!=='F6')&&(event.code!=='F7')
+			&&(event.code!=='F8')&&(event.code!=='F9')&&(event.code!=='F10')&&(event.code!=='F11')&&(event.code!=='F12')){
     key.classList.add('key_active');}
     posit= getCaretPos();
-    if (event.code==="CapsLock"){capsclick();}
-    if (event.code==="NumLock"){numclick();}
-    if ((event.code==="Delete")||(key.classList.contains('Delete'))){deleteclick();}
-    if (event.code==="Backspace"){backspaceclick();}
-    if ((event.code==="Enter")||(event.code==="NumpadEnter")){enterclick();}
-    if (event.code==="Tab"){tabspaceclick("Tab");}
-    if (event.code==="Space"){tabspaceclick("Space");}
-    if (event.code==="Escape"){escclick();}
-    if (event.code==="End"){endclick();}
-    if (event.code==="Home"){homeclick();}
-    if (event.code==="Insert"){insertclick();}
-    if ((event.code==="ArrowUp")||((key.classList.contains("specials")&&(key.classList.contains("↑"))))){
-      arrowupclick();
-    }
-    if ((event.code==="ArrowDown")||((key.classList.contains("specials")&&(key.classList.contains("↓"))))){
-      arrowdownclick();
-    }
-    if ((event.code==="ArrowLeft")||((key.classList.contains("specials")&&(key.classList.contains("←"))))){
-      arrowleftclick();
-    }
-    if ((event.code==="ArrowRight")||((key.classList.contains("specials")&&(key.classList.contains("→"))))){
-      arrowrightclick();
-    }   
-		if ((event.code==="ControlLeft")||(event.code==="ControlRight")){
-			if (event.code==="ControlLeft"){
-				ctrlclick("ControlLeft");
-				if (document.getElementById('ControlRight').classList.contains('key_active')){
-					document.getElementById('ControlRight').classList.remove('key_active');
-				}
-			}
-			else {
-				ctrlclick("ControlRight");
-				if (document.getElementById('ControlLeft').classList.contains('key_active')){
-					document.getElementById('ControlLeft').classList.remove('key_active');
-			  }	
-			}
-		}	
-		if ((event.code==="AltLeft")||(event.code==="AltRight")){
-			if (event.code==="AltLeft"){
-				altclick("AltLeft");
-				if (document.getElementById('AltRight').classList.contains('key_active')){
-					document.getElementById('AltRight').classList.remove('key_active');
-				}
-			}
-			else {
-				altclick("AltRight");
-				if (document.getElementById('AltLeft').classList.contains('key_active')){
-					document.getElementById('AltLeft').classList.remove('key_active');
-				}
-			}	
+		if (event.code==="CapsLock"){capsclick();}
+		else if (event.code==="ScrollLock"){scrollclick();}	
+    else if (event.code==="NumLock"){numclick();}	
+    else if ((event.code==="Delete")||(key.classList.contains('Delete'))){deleteclick();}
+    else if (event.code==="Backspace"){backspaceclick();}
+    else if ((event.code==="Enter")||(event.code==="NumpadEnter")){enterclick();}
+    else if (event.code==="Tab"){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			tabspaceclick("Tab");
 		}
-		if ((event.code==="ShiftLeft")||(event.code==="ShiftRight")){
-			if (event.code==="ShiftLeft"){
-				if (flagcaps===0){
-					shiftclick("ShiftLeft");
-					if (document.getElementById('ShiftRight').classList.contains('key_active')){
-						document.getElementById('ShiftRight').classList.remove('key_active');
-					}
-				}	
-			}
-			else {
-				if (flagcaps===0){
-					shiftclick("ShiftRight");
-					if (document.getElementById('ShiftLeft').classList.contains('key_active')){
-						document.getElementById('ShiftLeft').classList.remove('key_active');
-					}
-				}
+		else if (event.code==="MetaLeft"){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+		}
+    else if (event.code==="Space"){tabspaceclick("Space");}
+    else if (event.code==="Escape"){escclick();}
+    else if (event.code==="End"){endclick();}
+    else if (event.code==="Home"){homeclick();}
+    else if (event.code==="Insert"){insertclick();}
+		else if ((event.code==="ControlLeft")||(event.code==="ControlRight")){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			ctrlclick(event.code);
+		}	
+		else if (event.code==="AltLeft"){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			altclick("AltLeft");
+		}
+		else if (event.code==="AltRight"){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			altclick("AltRight");
+		}	
+		else if (event.code==='ShiftLeft'){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			shiftclick('ShiftLeft');
+		}
+		else if (event.code==='ShiftRight'){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			shiftclick('ShiftRight');}
+		else if ((event.code==='F1')||(event.code==='F2')||(event.code==='F3')||(event.code==='F4')||(event.code==='F6')||(event.code==='F7')||
+				(event.code==='F8')||(event.code==='F9')||(event.code==='F10')||(event.code==='F11')||(event.code==='F12')){
+				event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+				key.classList.add('key_active');
+				fclick(document.getElementById(event.code));
+				key.classList.remove('key_active');
 			}	
-    }
-    
-
-  });
-
-
+		else if (document.getElementById(event.code).classList.contains('letter')||document.getElementById(event.code).classList.contains('digit')){
+			event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+			letterdigitclick(document.getElementById(event.code));
+		}	
+		tea.focus(); 
+		tea.setSelectionRange(posit,posit);
+	});
 
   document.addEventListener('keyup', (event) => {
     const key=document.getElementById(event.code);
-    if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")){
+    if ((event.code!=="CapsLock")&&(event.code!=="NumLock")&&(event.code!=="ScrollLock")&&(event.code!=='ShiftLeft')
+			&&(event.code!=="ShiftRight")&&(event.code!=="ControlLeft")&&(event.code!=="ControlRight")&&(event.code!=="AltLeft")&&(event.code!=="AltRight")
+			&&(event.code!=='F1')&&(event.code!=='F2')&&(event.code!=='F3')&&(event.code!=='F4')&&(event.code!=='F6')&&(event.code!=='F7')
+			&&(event.code!=='F8')&&(event.code!=='F9')&&(event.code!=='F10')&&(event.code!=='F11')&&(event.code!=='F12')){
       key.classList.remove('key_active');
     }
   });
-  
-  
+ 
 
   keyboard.addEventListener('click', (event) => {
     if ((tea.value.length===0)&&(score===0)){
       getlocks();
       score=1;
     }
-    if (event.target.classList.contains('letter')||event.target.classList.contains('digit')){
-			letterdigitclick();
-    }
-    if (event.target.id==="CapsLock"){
-      capsclick();
-    }
-    if (event.target.id==="NumLock"){
-      numclick();
-    }
-    if ((event.target.id==="Delete")||(event.target.classList.contains('Delete'))){
-      deleteclick();
-    }
-    if (event.target.id==="Backspace"){
-      backspaceclick();
-    }
-    if ((event.target.id==="Enter")||(event.target.id==="NumpadEnter")){
-      enterclick();
-    }
-    if (event.target.id==="Tab"){
-      tabspaceclick("Tab");
-    }
-    if (event.target.id==="Space"){
-      tabspaceclick("Space");
-    }
-    if (event.target.id==="Escape"){
-      escclick();
-    }
-    if (event.target.id==="End"){
-      endclick();
-    }
-    if (event.target.id==="Home"){
-      homeclick();
-    }
-    if (event.target.id==="Insert"){
-      insertclick();
-    }
-    if ((event.target.id==="ArrowUp")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↑"))))){
-      arrowupclick();
-    }
-    if ((event.target.id==="ArrowDown")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↓"))))){
-      arrowdownclick();
-    }
-    if ((event.target.id==="ArrowLeft")||((event.target.classList.contains("specials")&&(event.target.classList.contains("←"))))){
-      arrowleftclick();
-    }
-    if ((event.target.id==="ArrowRight")||((event.target.classList.contains("specials")&&(event.target.classList.contains("→"))))){
-      arrowrightclick();
-    }   
+    if (event.target.classList.contains('letter')||event.target.classList.contains('digit')){letterdigitclick(event.target);}
+    if (event.target.id==="CapsLock"){capsclick();}
+    if (event.target.id==="NumLock"){numclick();}
+    if ((event.target.id==="Delete")||(event.target.classList.contains('Delete'))){deleteclick();}
+    if (event.target.id==="Backspace"){backspaceclick();}
+    if ((event.target.id==="Enter")||(event.target.id==="NumpadEnter")){enterclick();}
+    if (event.target.id==="Tab"){tabspaceclick("Tab");}
+    if (event.target.id==="Space"){tabspaceclick("Space");}
+    if (event.target.id==="Escape"){escclick();}
+		if ((event.target.id==="End")||(event.target.classList.contains('End'))){endclick();}
+		if (event.target.id==="ScrollLock"){scrollclick();}
+		if ((event.target.id==="Home")||(event.target.classList.contains('Home'))){homeclick();}
+		if ((event.target.id==="PageUp")||(event.target.classList.contains('PageUp'))){pageupclick();}
+		if ((event.target.id==="PageDown")||(event.target.classList.contains('PageDown'))){pagedownclick();}
+    if (event.target.id==="Insert"){insertclick();}
+    if ((event.target.id==="ArrowUp")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↑"))))){arrowupclick();}
+    if ((event.target.id==="ArrowDown")||((event.target.classList.contains("specials")&&(event.target.classList.contains("↓"))))){arrowdownclick();}
+    if ((event.target.id==="ArrowLeft")||((event.target.classList.contains("specials")&&(event.target.classList.contains("←"))))){arrowleftclick();}
+    if ((event.target.id==="ArrowRight")||((event.target.classList.contains("specials")&&(event.target.classList.contains("→"))))){arrowrightclick();}   
 		if ((event.target.id==="ControlLeft")||(event.target.id==="ControlRight")){
 			if (event.target.id==="ControlLeft"){
 				ctrlclick("ControlLeft");
@@ -349,22 +302,22 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 		if ((event.target.id==="ShiftLeft")||(event.target.id==="ShiftRight")){
 			if (event.target.id==="ShiftLeft"){
-				if (flagcaps===0){
-					shiftclick("ShiftLeft");
-					if (document.getElementById('ShiftRight').classList.contains('key_active')){
-						document.getElementById('ShiftRight').classList.remove('key_active');
-					}
-				}	
-			}
-			else {
-				if (flagcaps===0){
-					shiftclick("ShiftRight");
-					if (document.getElementById('ShiftLeft').classList.contains('key_active')){
-						document.getElementById('ShiftLeft').classList.remove('key_active');
-					}
+				shiftclick("ShiftLeft");
+				if (document.getElementById('ShiftRight').classList.contains('key_active')){
+					document.getElementById('ShiftRight').classList.remove('key_active');
 				}
 			}	
+			else {
+				shiftclick("ShiftRight");
+				if (document.getElementById('ShiftLeft').classList.contains('key_active')){
+					document.getElementById('ShiftLeft').classList.remove('key_active');
+				}
+			}
 		}
+		if ((event.target.id==='F1')||(event.target.id==='F2')||(event.target.id==='F3')||(event.target.id==='F4')||(event.target.id==='F6')||(event.target.id==='F7')||
+				(event.target.id==='F8')||(event.target.id==='F9')||(event.target.id==='F10')||(event.target.id==='F11')||(event.target.id==='F12')){
+				fclick(document.getElementById(event.target.id));
+			}
   tea.focus(); 
 	tea.setSelectionRange(posit,posit);
   });
@@ -375,8 +328,6 @@ window.addEventListener('DOMContentLoaded', () => {
       posit=0;
     }
     else posit=posit-70;
-    var evt = new KeyboardEvent('keydown', {'keyCode':38, 'which':38});
-    document.dispatchEvent(evt);
   }
   //функция для нажатия стрелки вниз
   function arrowdownclick(){
@@ -385,32 +336,41 @@ window.addEventListener('DOMContentLoaded', () => {
       posit=tea.value.length;
     }
     else posit=posit+70;
-    var evt = new KeyboardEvent('keydown', {'keyCode':40, 'which':40});
-    document.dispatchEvent(evt);
   }
   //функция для нажатия стрелки влево
   function arrowleftclick(){
     posit=getCaretPos();
     posit=posit-1;
-    var evt = new KeyboardEvent('keydown', {'keyCode':37, 'which':37});
-    document.dispatchEvent(evt);
   }
   //функция для нажатия стрелки вправо
   function arrowrightclick(){
     posit=getCaretPos();
     posit=posit+1;
-    var evt = new KeyboardEvent('keydown', {'keyCode':39, 'which':39});
-    document.dispatchEvent(evt);
+	}
+	//функция для нажатия pageup
+	function pageupclick(){
+		posit=getCaretPos();
+		if (posit-500<0){
+			posit=0;
+		}
+		else posit=posit-500;
+	}
+	//функция для нажатия pagedown
+	function pagedownclick(){
+    if (posit+500>tea.value.length){
+      posit=tea.value.length;
+		}
+		else posit=posit+500;
   }
   //функция для нажатия буквы или цифры
-  function letterdigitclick(){
+  function letterdigitclick(letter){
     let pos = getCaretPos();
       let text = tea.value;
       let len =text.length;
-      let symbol=event.target.innerHTML;
+      let symbol=letter.innerHTML;
       if (pos===0){
         if (len===0){
-          symbol=event.target.innerHTML;
+          symbol=letter.innerHTML;
           tea.value = symbol;
           posit = pos+1;
         }
@@ -431,14 +391,20 @@ window.addEventListener('DOMContentLoaded', () => {
   //функция для нажатия CapsLock
   function capsclick(){
     if (document.getElementById("CapsLock").classList.contains('key_active')===false){
-      document.getElementById("CapsLock").classList.add('key_active');
-      document.getElementById("CapsLockP").classList.add('radiobutton_active');
-      letters.forEach((e) => {
-        if (e.classList.contains('letter')){
-          e.innerHTML = e.innerHTML.toUpperCase();
-        }
+			if (flagshift===1){
+				if (document.getElementById('ShiftLeft').classList.contains('key_active')){
+					shiftclick('ShiftLeft');
+				}
+				else shiftclick('ShiftRight');
+			}	
+			document.getElementById("CapsLock").classList.add('key_active');
+			document.getElementById("CapsLockP").classList.add('radiobutton_active');
+			letters.forEach((e) => {
+				if (e.classList.contains('letter')){
+					e.innerHTML = e.innerHTML.toUpperCase();
+				}
 			});
-			flagcaps=1;
+			flagcaps=1;	
     }
     else{
       document.getElementById("CapsLock").classList.remove('key_active');
@@ -594,7 +560,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   //функция нажатия Insert
 	function insertclick(){
-    
+    posit=getCaretPos();
   }
   //функция нажатия Alt
 	function altclick(control){
@@ -641,21 +607,22 @@ window.addEventListener('DOMContentLoaded', () => {
 			letters.forEach((e) => {
 				if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
 					if (lang==='en'){
+						e.innerHTML = e.innerHTML.toLowerCase();	
 						n = shiftEnactive.indexOf(e.innerText);
 						if (n!==-1){
 							e.innerText = shiftEnunactive[n];
 						}
 					}
 					else if (lang==='ru'){
+						e.innerHTML = e.innerHTML.toLowerCase();
 						n = shiftRuactive.indexOf(e.innerText);
 						if (n!==-1){
 						  e.innerText = shiftRuunactive[n];
-					  }
+						}
 					}
 				}
 			});
 			flagshift=0;
-
 		}
 		else {
 			if (flagalt===1){
@@ -666,27 +633,35 @@ window.addEventListener('DOMContentLoaded', () => {
 				flagshift=0;
 			}
 			else{
-			document.getElementById(control).classList.add('key_active');
-			letters.forEach((e) => {
-				if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
-					if (lang==='en'){
-						n = shiftEnunactive.indexOf(e.innerText);
-						if (n!==-1){
-
-							e.innerText = shiftEnactive[n];
-						}	
+				//if (flagcaps===1){capsclick();}
+				document.getElementById(control).classList.add('key_active');
+				letters.forEach((e) => {
+					if ((e.classList.contains('letter')||e.classList.contains('digit'))&&(!e.classList.contains('numpads'))){
+						if (lang==='en'){
+							e.innerHTML = e.innerHTML.toUpperCase();
+							n = shiftEnunactive.indexOf(e.innerText);
+							if (n!==-1){
+								e.innerText = shiftEnactive[n];
+							}	
+						}
+						else if (lang==='ru'){
+							e.innerHTML = e.innerHTML.toUpperCase();
+							n = shiftRuunactive.indexOf(e.innerText);
+							if (n!==-1){
+								e.innerText = shiftRuactive[n];
+							}	
+						}
 					}
-					else if (lang==='ru'){
-						n = shiftRuunactive.indexOf(e.innerText);
-						if (n!==-1){
-							e.innerText = shiftRuactive[n];
-						}	
-					}
-				}
 			});
 			flagshift=1;
 			}
 		}	
+	}
+	//функция\ нажатия любой ф-ки кроме F5, она для обновления страницы
+	function fclick(f){
+		f.classList.add('key_active');  
+		alert('Проект полнофункциональной клавиатуры! Отличия от реальных \n нажатий имеют функциональные кнопки, а также стрелки.\n Единственное отличие по кнопкам, это отсутствие PrntScr,\n т.к. не нашел пока по ней документацию.')
+		f.classList.remove('key_active');
 	}
 	//Вспомогательная функция смены раскладки клавиатуры
 	function changelanguage(){
